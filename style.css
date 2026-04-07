@@ -1,3 +1,4 @@
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
@@ -14,39 +15,81 @@ body {
   padding: 20px;
   box-sizing: border-box;
 }
-img[alt="Gatinho fofo"] {
-  margin: 40px 0;
-  max-width: 1000px;
-  position: absolute;
- 
-  left: 33%;
-  border-radius: 16px;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-h3 {
-  font-size: 3.2rem;
-  margin: 0.4em 0 1.2em;
-  color: #48e152d5;
-  text-shadow: 0 0 20px rgba(3, 136, 54, 0.5);
-  animation: pulse 4s infinite alternate;
-}
-#resposta {
-  font-size: 3.2rem;
-  margin: 0.4em 0 1.2em;
-  color: #48e152d5;
-  text-shadow: 0 0 20px rgba(3, 136, 54, 0.5);
-  animation: pulse 4s infinite alternate;
-}
 #loading {
   position: fixed;
   inset: 0;
-  background: #000814;
+  background: #0a0a1f;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.6s ease;
+}
+.bbc {
+  position: absolute;
+  inset: 0;
+  background: url("https://wallpaperaccess.com/full/8406757.gif") center/cover;
+  opacity: 0.3;
+}
+.brc {
+  text-align: center;
+  z-index: 2;
+  max-width: 480px;
+  width: 90%;
+}
+.brsl {
+  height: 260px;
+  position: relative;
+  margin-bottom: 25px;
+  overflow: hidden;
+  border-radius: 18px;
+
+}
+.brawl-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: all 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform: translateX(120%);
+}
+.brawl-image.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.brawl-title {
+  font-size: 3.2rem;
+  color: rgba(69, 241, 147, 0.6);
+  text-shadow: 0 0 15px rgba(69, 241, 147, 0.6), 0 0 30px #ff8800, 3px 3px 0 #000;
+  margin: 15px 0 25px;
+  letter-spacing: 6px;
+  animation: brawlPulse 1.4s infinite alternate;
+}
+.barra-progress {
+  padding: 0 10px;
+}
+.brawl-progress-bar {
+  width: 100%;
+  height: 30px;
+  background: #1a1a2e;
+  border: 4px solid #42ae8118;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(69, 241, 147, 0.6);
+  opacity: 0.75;
+}
+.brawl-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #37fe7660);
+
+  transition: width 5.2s linear;
+}
+@keyframes brawlPulse {
+  from { transform: scale(0.72); }
+  to   { transform: scale(1.0); }
 }
 
 #loading.hidden {
@@ -54,36 +97,22 @@ h3 {
   pointer-events: none;
 }
 
-.pixel-loading { text-align: center; }
-.pixel-text {
-  font-family: 'Courier New', Courier, monospace;
+h1, h2, #resposta {
   font-size: 3.2rem;
-  color: #11d760;
-  letter-spacing: 4px;
-  text-shadow: 0 0 10px #00ff11b6, 0 0 20px #00ff95;
-  margin-bottom: 20px;
-  animation: blink 1.2s infinite alternate;
+  margin: 0.4em 0 1.2em;
+  color: #48e152d5;
+  text-shadow: 0 0 20px rgba(3, 136, 54, 0.5);
+  animation: pulse 4s infinite alternate;
 }
-.pixel-bar {
-  width: 320px;
-  height: 32px;
-  background: #222;
-  border: 6px solid #444;
-  box-shadow: inset 0 0 10px #000;
+h3 {
+  font-size: 3.2rem;
   position: relative;
-  overflow: hidden;
+  left: 30%;
+  margin: 0.4em 0 1.2em;
+  color: #c5cbc5d5;
+  text-shadow: 0 0 20px rgba(3, 136, 54, 0.5);
+  
 }
-.pixel-fill {
-  height: 100%;
-  width: 0%;
-  background: repeating-linear-gradient(90deg, #06d7d3 0px, #06d7d325 16px, #06d7d3 16px, #109997 32px);
-  box-shadow: 0 0 15px #00ff80 inset;
-}
-.pixel-fill.animate { animation: fillBar 3s linear forwards; }
-
-@keyframes fillBar { 0% { width: 0%; } 100% { width: 100%; } }
-@keyframes blink { from { opacity: 0.6; } to { opacity: 1; } }
-
 .tabs {
   display: flex;
   justify-content: center;
@@ -91,7 +120,6 @@ h3 {
   margin: 20px 0 40px;
   flex-wrap: wrap;
 }
-
 .tab-button {
   padding: 12px 32px;
   font-size: 1.3rem;
@@ -103,43 +131,24 @@ h3 {
   transition: all 0.3s;
   backdrop-filter: blur(6px);
 }
-
 .tab-button:hover {
   background: rgba(140, 140, 255, 0.55);
   transform: translateY(-2px);
 }
-
 .tab-button.active {
   background: rgba(80, 200, 120, 0.75);
   border-color: #5eff7e;
   transform: translateY(-4px);
   box-shadow: 0 6px 20px rgba(80, 200, 120, 0.4);
 }
-
 .tab-content {
   display: none;
   width: 100%;
   max-width: 900px;
 }
-
 .tab-content.active {
   display: block;
 }
-
-.container, .game-wrapper {
-  text-align: center;
-}
-
-h1 {
-  font-size: 3.2rem;
-  margin: 0.4em 0 1.2em;
-  color: #48e152d5;
-  text-shadow: 0 0 20px rgba(3, 136, 54, 0.5);
-  animation: pulse 4s infinite alternate;
-}
-
-
-
 .lista-animada {
   list-style: none;
   padding: 0;
@@ -149,12 +158,32 @@ h1 {
   max-width: 500px;
   margin: 0 auto;
 }
-
 .lista-animada.show {
   opacity: 1;
   transform: translateY(0);
 }
-
+#botao3 {
+  background: rgba(7, 7, 7, 0.495);
+  margin: 14px 0;
+  padding: 16px 22px;
+  border-radius: 16px;
+  font-size: 1.4rem;
+  color:white;
+  border: 1px solid rgba(100, 255, 140, 0.2);
+  position: relative;
+  
+}
+input {
+  background: rgba(30, 30, 60, 0.136);
+  margin: 14px 0;
+  padding: 18px 24px;
+  border-radius: 16px;
+  color:white;
+  font-size: 1.4rem;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(100, 255, 140, 0.2);
+  position: relative;
+}
 .lista-animada li {
   background: rgba(30, 30, 60, 0.6);
   margin: 14px 0;
@@ -167,19 +196,16 @@ h1 {
   border: 1px solid rgba(100, 255, 140, 0.2);
   position: relative;
 }
-
 .lista-animada li:hover {
   transform: translateX(10px) scale(1.03);
   background: rgba(50, 90, 63, 0.8);
   border-color: rgba(120, 255, 127, 0.5);
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
-
 .doidosono {
   font-size: 2rem;
   margin-left: 12px;
 }
-
 .lista-animada li::after {
   content: attr(data-descricao);
   position: absolute;
@@ -199,51 +225,49 @@ h1 {
   border: 1px solid #5eff7e;
   box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
-
 .lista-animada li:hover::after {
   opacity: 1;
   bottom: calc(100% + 12px);
 }
-
 ul.lista-animada li:nth-child(1) { transition-delay: 0.2s; }
 ul.lista-animada li:nth-child(2) { transition-delay: 0.4s; }
 ul.lista-animada li:nth-child(3) { transition-delay: 0.6s; }
 ul.lista-animada li:nth-child(4) { transition-delay: 0.8s; }
 ul.lista-animada li:nth-child(5) { transition-delay: 1.0s; }
 ul.lista-animada li:nth-child(6) { transition-delay: 1.2s; }
-
 @keyframes pulse {
   from { transform: scale(1); }
   to   { transform: scale(1.05); }
 }
-
 footer {
   margin-top: 60px;
   font-size: 1rem;
   opacity: 0.75;
 }
-
-button {
-  background: rgba(222, 7, 193, 0.6);
-  margin: 30px 0;
-  color: #fffeff;
-  padding: 16px 32px;
-  font-size: 1.5rem;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s;
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(24, 24, 29, 0.3);
-  background-image: url("https://i.pinimg.com/originals/d7/7a/ad/d77aad833dde5283f1456167bdb5f9be.gif");
-  background-size: cover;
+.game-wrapper:hover {
+  transform: translateX(10px) scale(1.03);
+  border-color: rgba(11, 253, 23, 0.308);
+  
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
-
-img[alt="Gatinho fofo"] {
-  margin: 40px 0;
-  max-width: 200px;
-  border-radius: 16px;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+.game-wrapper:after {
+  content: attr(data-descricao);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e3f28;
+  color: #e0e0ff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.25s ease;
+  z-index: 10;
+  border: 1px solid #5eff7e;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 .game-wrapper {
@@ -252,21 +276,19 @@ img[alt="Gatinho fofo"] {
   border-radius: 16px;
   backdrop-filter: blur(8px);
   border: 1px solid rgba(100,255,140,0.3);
-}
-
-#gameCanvas {
-  display: block;
-  background: transparent;
-  border: 3px solid #868b86;
-
-  image-rendering: pixelated;
-
-  margin: 20px auto;
-}
-
-
-.game-wrapper {
-  width: 100%;
-  max-width: 820px;      
+  max-width: 620px;
+  max-height: 500px;
   margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(6px);
+}
+img[alt="Gatinho fofo"] {
+  margin: 40px 0;
+  max-width: 200px;
+  position: absolute;
+  top: 130%;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
