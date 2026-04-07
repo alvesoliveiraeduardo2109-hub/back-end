@@ -4,32 +4,84 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="style.css">
-  <title>2º Sistemas CEEP</title>
+  <title>eu</title>
+  
+  <!-- por algum motivo os tab nao tava indo entao vai ficar em inline pra conseguir dar load apos o carregamento(provalmente seria o carremento pois ele bloqueia tudo ate a pagina dar load 100%) -->
+  <style>
+    .tab-content {
+      display: none !important;
+    }
+    .tab-content.active {
+      display: block !important;
+    }
+    .tabs {
+      display: flex !important;
+      justify-content: center !important;
+      gap: 12px !important;
+      margin: 20px 0 40px !important;
+      flex-wrap: wrap !important;
+    }
+    .tab-button {
+      padding: 12px 32px !important;
+      font-size: 1.3rem !important;
+      background: rgba(100, 100, 180, 0.35) !important;
+      border: 1px solid rgba(140, 140, 255, 0.5) !important;
+      color: white !important;
+      border-radius: 12px !important;
+      cursor: pointer !important;
+      transition: all 0.3s !important;
+    }
+    .tab-button.active {
+      background: rgba(80, 200, 120, 0.75) !important;
+      border-color: #5eff7e !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 6px 20px rgba(80, 200, 120, 0.4) !important;
+    }
+    #conteudo.hidden {
+      display: none !important;
+    }
+    #conteudo {
+      width: 100% !important;
+      max-width: 1000px !important;
+      margin: 0 auto !important;
+    }
+  </style>
 </head>
 <body>
-
   <div id="loading">
-    <div class="pixel-loading">
-      <div class="pixel-text">.</div>
-      <div class="pixel-bar">
-        <div class="pixel-fill"></div>
+    <div class="bbc"></div>
+    
+    <div class="brc">
+      <div class="brsl">
+        <img src="https://i.pinimg.com/originals/c1/76/b2/c176b29029ac57af483952738f9e0caa.gif" alt="Brawler" class="brawl-image active" >
+        <img src="https://i.pinimg.com/originals/0b/ec/c1/0becc1f20de8909c7daa826c1221af67.gif" alt="Brawler" class="brawl-image">
+        <img src="https://i.pinimg.com/originals/14/c6/ae/14c6ae4940e223ec71b317fabbba835c.gif" alt="Brawler" class="brawl-image">
+        <img src="https://i.pinimg.com/originals/a7/8c/0b/a78c0bfab7503d6797ef148791a9b523.gif" alt="Brawler" class="brawl-image">
+        <img src="https://i.pinimg.com/originals/5c/c1/59/5cc159d616cc933e1d6a7249853d6c74.gif" alt="Brawler" class="brawl-image">
+
+
+      </div>
+      <div class="barra-progress">
+        <div class="brawl-progress-bar">
+          <div class="brawl-progress-fill"></div>
+        </div>
       </div>
     </div>
   </div>
 
   <div id="conteudo" class="hidden">
     <h1>2º Sistemas CEEP</h1>
+    
     <div class="tabs">
       <button class="tab-button active" data-tab="protagonistas">Protagonistas</button>
       <button class="tab-button" data-tab="aba2">Interclasse</button>
       <button class="tab-button" data-tab="aba3">Requisição</button>
-      <button class="tab-button" data-tab="aba4">Jogos</button>
+      <button class="tab-button" data-tab="aba4">Mentoria elite</button>
     </div>
-
     <div id="protagonistas" class="tab-content active">
       <div class="container">
+        <h3>Os Protagonistas!</h3>
         <ul class="lista-animada" id="lista-alunos">
-          <h2>Os protagonistas!</h2>
           <li data-descricao="O protagonista que realmente importa">Eduardo Alves <span class="doidosono">😎</span></li>
           <li data-descricao="franga ne">Eduardo Henrique <span class="doidosono">🐔</span></li>
           <li data-descricao="Rainha do deboche">Ingllidy <span class="doidosono">😪</span></li>
@@ -38,41 +90,40 @@
           <li data-descricao="Preciso falar?">Bruna <span class="doidosono">🧏🏻‍♀️</span></li>
         </ul>
         <footer>
-          Turma mais foda do CEEP<br>
+          Turma mais foda do CEEP
         </footer>
       </div>
     </div>
-
     <div id="aba2" class="tab-content">
-      <div class="container">
-        <h2>Interclasse</h2>
-        <p>ganhamo</p>
-      </div>
-    </div>
-
-    <div id="aba3" class="tab-content">
-      <div class="container">
-        <h2>GET</h2>
-        <h3>requisiçao</h3>
-        <div id="resposta">
-      </div>
-    </div> 
-
-    <div id="aba4" class="tab-content">
       <div class="game-wrapper">
-        <h2>Mini jogo pq to com tedio</h2>
-        <p>PS: Coletar os slime verde</p>
-        <canvas id="gameCanvas" width="800" height="500"></canvas>
-        <div id="gameInfo">
-          Pontos: <span id="score">0</span> | Vida: <span id="health">3</span>
+        <h3>Interclasse</h3>
+        <p><strong>A turma que chegou pra dominar</strong></p>
+        <p><strong>Nossa tática é algorítmica. Prevemos os movimentos e executamos com precisão de kernel. O troféu é apenas o output esperado:</strong></p>
+        <div class="interclasse-extra">
+          <p><strong>Resultado:</strong> <span class="resultado">Ganhamos ne</span></p>
         </div>
       </div>
     </div>
-
+    <div id="aba3" class="tab-content">
+      <div class="container">
+          <h3>GET - Requisição CEP</h3>
+          <div id="resposta"></div>
+          
+          <input type="text" id="inputCep" placeholder="Digite o CEP" maxlength="19">
+          <button id="botao3" onclick="getDados()">Buscar CEP</button>
+      </div>
   </div>
 
-  <img src="https://i.pinimg.com/originals/b1/81/32/b18132d369b1bf71cfffd19334b6e73a.gif" alt="Gatinho fofo" onclick="clicou('na imagem');">
-
+    <div id="aba4" class="tab-content">
+      <div class="game-wrapper">
+        <h3>Mentoria Elite</h3>
+        <p><strong>Ulisses & Selma: Os arquitetos do nosso conhecimento. Orientação que transforma sintaxe em solução:</strong></p>
+      </div>
+    </div>
+  </div>
+  <img src="https://i.pinimg.com/originals/b1/81/32/b18132d369b1bf71cfffd19334b6e73a.gif" 
+       alt="Gatinho fofo" 
+       onclick="clicou('na imagem');">
 
   <script src="functions.js" defer></script>
 </body>
