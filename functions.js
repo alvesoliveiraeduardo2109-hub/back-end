@@ -1,3 +1,4 @@
+
 async function getDados() {
   const respostaDiv = document.getElementById("resposta");
   try {
@@ -7,7 +8,8 @@ async function getDados() {
       respostaDiv.innerHTML = `
           <strong>CEP:</strong> ${dados.cep}<br>
           <strong>Cidade:</strong> ${dados.localidade} - ${dados.uf}<br>
-          
+          <strong>Estado:</strong> ${dados.estado} <br>
+           <strong>DDD:</strong> ${dados.ddd}
       `;
   } catch (error) {
       console.error("erro:", error);
